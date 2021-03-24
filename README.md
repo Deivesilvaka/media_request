@@ -35,9 +35,7 @@ start()
 
 async function start() {
     //Faz o download do vídeo quando mandamos sua url.
-    const response = await fetch('https://mediarequest.herokuapp.com/download?request=https://www.youtube.com/watch?v=Mr_uHJPUlO8')
-    const videoData = await response.json()
-    console.log(videoData)
+    window.location.href = 'https://mediarequest.herokuapp.com/download?request=https://www.youtube.com/watch?v=Mr_uHJPUlO8'
 }
 
 start()
