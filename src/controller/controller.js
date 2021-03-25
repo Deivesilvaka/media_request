@@ -53,7 +53,7 @@ module.exports = {
         //envia o arquivo depois de 10.5 segundos.
         setTimeout(async () => {
             res.download(arquive)
-        }, 5000)
+        }, 8000)
     }
 
 }
