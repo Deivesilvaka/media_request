@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Request API - TEST</title>
+</head>
+<body>
+    <script>
+
+    async function catchVideo(command) {
+        //Faz o download do vídeo quando mandamos sua url.
+        const name = document.querySelector('#name').value
+        const url = `https://mediarequest.herokuapp.com/${command}?request=${name}`
+
+        const response = await fetch(url)
+        return response.json()
+        
+    }
+
+    async function linkar(link) {
+        window.location.href = link
+    }
+
+    function videoLink(link) {
+        const html = `
+        <iframe width="426" height="240" src="${link.replace('watch?v=', 'embed/')}"> <iframe/>`
+
+        document.querySelector('#video').innerHTML = html
+    }
+
+    async function createLayout(video, download=false) {
+        let html = ''
+        const downloadLink = 'https://mediarequest.herokuapp.com/download?request='
+
+        video.map(item => {
+            if(!download){
+                html += `<img src="${item.thumbnail}" onclick="videoLink('${item.href ? item.href : item.url}')" width=320 height=180 /><br><h3>${item.title}</h3><br>`
+            }else{
+                html += `<img src="${item.thumbnail}" onclick="linkar('${item.href ? downloadLink + item.href : downloadLink + item.url}')" width=320 height=180 /><br><h3>${item.title}</h3><br>`
+            }
+        })
+
+        document.querySelector('#video').innerHTML = html
+    }
+
+    async function single() {
+        const video = await catchVideo('single')
+        await createLayout(video)
+    }
+
+    async function media() {
+        const video = await catchVideo('media')
+        await createLayout(video.videos)
+    }
+
+    async function download() {
+        const video = await catchVideo('media')
+        await createLayout(video.videos, true)
+    }
+
+    </script>
+
+    <label>Nome do vídeo: <input type="text" id="name" placeholder="o que pesquisar?"></label><br><br>
+
+    <button onclick="single()">Pesquisar Um</button> | 
+    <button onclick="media()">Pesquisar Vários</button> | 
+    <button onclick="download()">Download</button><br>
+
+    <h1>response</h1>
+
+    <div id="video">
+
+    </div>
+
+</body>
+</html>
