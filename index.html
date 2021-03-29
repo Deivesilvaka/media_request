@@ -5,6 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Request API - TEST</title>
+
+    <style>
+
+        #media{
+            position:relative;
+            background-color: black;
+            color: red;
+            width: 70px;
+            height: 30px;
+            border-radius: 12px;
+            top: 5px;
+            left: 5px;
+            float: left;
+        }
+
+        #mediaLogo{
+            background-color: red;
+            width: 175px;
+            height: 40px;
+            border-radius: 12px;
+            margin-top: 15px;
+            left: 0px;
+        }
+
+        w{
+            position: absolute;
+            margin-left:5px;
+            margin-top: 5px;
+        }
+
+        strong{
+            position: absolute;
+            margin-top: 5px;
+            margin-left: 8px;
+        }
+    </style>
+
 </head>
 <body>
     <script>
@@ -62,6 +99,11 @@
 
     </script>
 
+    <div id="mediaLogo">
+        <div id="media"><strong>MEDIA </strong></div><strong id="request"><w>REQUEST</w></strong>
+    </div>
+
+    <br>
     <label>Nome do vídeo: <input type="text" id="name" placeholder="o que pesquisar?"></label><br><br>
 
     <button onclick="single()">Pesquisar Um</button> | 
